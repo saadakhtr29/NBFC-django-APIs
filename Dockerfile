@@ -11,9 +11,6 @@ ENV PYTHONDONTWRITEBYTECODE=1 \
 RUN groupadd --gid 1000 appuser && \
     useradd --uid 1000 --gid appuser --shell /bin/bash --create-home appuser
 
-# Set work directory
-WORKDIR /app
-
 # Install system dependencies
 RUN apt-get update && apt-get install -y --no-install-recommends \
     build-essential \
@@ -21,27 +18,24 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     postgresql-client \
     && rm -rf /var/lib/apt/lists/*
 
-# Create virtual environment (following your instructions)
-RUN python -m venv /app/venv
-ENV PATH="/app/venv/bin:$PATH"
+# Set work directory and change ownership
+WORKDIR /app
+RUN chown -R appuser:appuser /app
 
 # Copy requirements first for better caching
 COPY requirements.txt .
 
-# Install dependencies (following your instructions)
+# Install dependencies globally (no virtual environment needed in Docker)
 RUN pip install --no-cache-dir -r requirements.txt
-
-# Copy project files
-COPY . .
-
-# Create directories for static and media files
-RUN mkdir -p /app/staticfiles /app/media
-
-# Change ownership to non-root user
-RUN chown -R appuser:appuser /app
 
 # Switch to non-root user
 USER appuser
+
+# Copy project files
+COPY --chown=appuser:appuser . .
+
+# Create directories for static and media files
+RUN mkdir -p /app/staticfiles /app/media
 
 # Expose port
 EXPOSE 8000
