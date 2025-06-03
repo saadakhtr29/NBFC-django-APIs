@@ -2,6 +2,9 @@ from django.db import models
 from django.utils.translation import gettext_lazy as _
 from nbfc_loans.models import Loan
 from nbfc_accounts.models import User
+from django.contrib.auth import get_user_model
+
+User = get_user_model()
 
 class Document(models.Model):
     DOCUMENT_TYPE = (
@@ -34,6 +37,7 @@ class Document(models.Model):
         ordering = ['-created_at']
         verbose_name = _('Document')
         verbose_name_plural = _('Documents')
+        db_table = 'nbfc_documents'
 
     def __str__(self):
         return f"{self.get_document_type_display()} - {self.loan}"

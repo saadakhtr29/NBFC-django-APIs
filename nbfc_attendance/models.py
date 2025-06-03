@@ -14,21 +14,19 @@ class Attendance(models.Model):
 
     employee = models.ForeignKey(Employee, on_delete=models.CASCADE, related_name='attendances')
     date = models.DateField()
-    status = models.CharField(max_length=20, choices=STATUS_CHOICES)
-    check_in = models.DateTimeField(null=True, blank=True)
-    check_out = models.DateTimeField(null=True, blank=True)
-    working_hours = models.DecimalField(max_digits=5, decimal_places=2, null=True, blank=True)
+    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='present')
+    check_in = models.TimeField(null=True, blank=True)
+    check_out = models.TimeField(null=True, blank=True)
     notes = models.TextField(blank=True)
-    verified_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, related_name='verified_attendances')
-    verified_at = models.DateTimeField(null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
+        db_table = 'nbfc_attendance'
         ordering = ['-date', '-check_in']
         unique_together = ['employee', 'date']
         verbose_name = _('Attendance')
-        verbose_name_plural = _('Attendances')
+        verbose_name_plural = _('Attendance Records')
 
     def __str__(self):
         return f"{self.employee.get_full_name()} - {self.date} - {self.status}"
@@ -41,12 +39,12 @@ class Attendance(models.Model):
     def is_late(self):
         if self.check_in:
             # Assuming work starts at 9:00 AM
-            return self.check_in.time() > models.time(9, 0)
+            return self.check_in > models.time(9, 0)
         return False
 
     @property
     def is_early_leave(self):
         if self.check_out:
             # Assuming work ends at 5:00 PM
-            return self.check_out.time() < models.time(17, 0)
+            return self.check_out < models.time(17, 0)
         return False
