@@ -18,7 +18,7 @@ class LoanRepayment(models.Model):
         ('other', 'Other'),
     )
 
-    loan = models.ForeignKey(Loan, on_delete=models.CASCADE, related_name='repayments')
+    loan = models.ForeignKey(Loan, on_delete=models.CASCADE, related_name='loan_repayments')
     amount = models.DecimalField(max_digits=15, decimal_places=2)
     payment_date = models.DateField()
     payment_method = models.CharField(max_length=20, choices=PAYMENT_METHOD)
