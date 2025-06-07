@@ -18,7 +18,7 @@ class LoanRepayment(models.Model):
         ('other', 'Other'),
     )
 
-    loan = models.ForeignKey(Loan, on_delete=models.CASCADE, related_name='repayments')
+    loan = models.ForeignKey(Loan, on_delete=models.CASCADE, related_name='loan_repayments')
     amount = models.DecimalField(max_digits=15, decimal_places=2)
     payment_date = models.DateField()
     payment_method = models.CharField(max_length=20, choices=PAYMENT_METHOD)
@@ -47,3 +47,27 @@ class LoanRepayment(models.Model):
         if self.is_late and self.loan.next_payment_date:
             return (self.payment_date - self.loan.next_payment_date).days
         return 0
+
+class Repayment(models.Model):
+    STATUS_CHOICES = [
+        ('pending', 'Pending'),
+        ('completed', 'Completed'),
+        ('failed', 'Failed'),
+    ]
+    
+    loan = models.ForeignKey(Loan, on_delete=models.CASCADE, related_name='repayments')
+    amount = models.DecimalField(max_digits=12, decimal_places=2)
+    payment_date = models.DateField()
+    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='pending')
+    transaction_reference = models.CharField(max_length=100, blank=True)
+    notes = models.TextField(blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    
+    def __str__(self):
+        return f"{self.loan.employee} - {self.amount}"
+    
+    class Meta:
+        db_table = 'nbfc_repayments'
+        verbose_name = 'Repayment'
+        verbose_name_plural = 'Repayments'
