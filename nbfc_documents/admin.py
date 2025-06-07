@@ -3,7 +3,8 @@ from .models import Document
 
 @admin.register(Document)
 class DocumentAdmin(admin.ModelAdmin):
-    list_display = ('document_name', 'document_type', 'uploaded_by_user', 'created_at')
-    list_filter = ('document_type', 'created_at')
-    search_fields = ('document_name', 'description')
+    list_display = ('__str__', 'document_type', 'status', 'created_at')
+    list_filter = ('document_type', 'status', 'created_at')
+    search_fields = ('description', 'loan__id')
     ordering = ('-created_at',)
+    readonly_fields = ('created_at', 'updated_at')
