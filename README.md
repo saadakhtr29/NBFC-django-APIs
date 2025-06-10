@@ -145,10 +145,3 @@ The API documentation is available at `/api/docs/` when running the development 
 4. Push to the branch
 5. Create a Pull Request
 
-## License
-
-[Add your license information here]
-
-## Contact
-
-[Add your contact information here]
