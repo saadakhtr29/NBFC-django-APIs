@@ -16,8 +16,8 @@ SECRET_KEY = os.getenv('SECRET_KEY', 'your-secret-key-here')
 DEBUG = os.getenv('DEBUG', 'True') == 'True'
 
 # Dynamic host configuration
-HOST_DOMAIN = os.getenv('HOST_DOMAIN', '20.51.216.139')
-HOST_IP = os.getenv('HOST_IP', '20.51.216.139')
+HOST_DOMAIN = os.getenv('HOST_DOMAIN', '57.152.34.24')
+HOST_IP = os.getenv('HOST_IP', '57.152.34.24')
 DEFAULT_HOSTS = f'{HOST_DOMAIN},{HOST_IP},0.0.0.0'
 ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', DEFAULT_HOSTS).split(',')
 
@@ -171,7 +171,7 @@ SIMPLE_JWT = {
 
 # CORS settings
 CORS_ALLOW_ALL_ORIGINS = DEBUG
-FRONTEND_HOST = os.getenv('FRONTEND_HOST', 'localhost:3000')
+FRONTEND_HOST = os.getenv('FRONTEND_HOST', '57.152.34.24:3000')
 CORS_ALLOWED_ORIGINS = [
     f"http://{FRONTEND_HOST}",
     f"https://{FRONTEND_HOST}",

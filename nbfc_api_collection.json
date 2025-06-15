@@ -1,7 +1,7 @@
 {
   "info": {
     "name": "NBFC API Collection",
-    "description": "Complete collection of all NBFC API endpoints",
+    "description": "Complete collection of all NBFC API endpoints - Updated for IP 57.152.34.24",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
   "item": [
@@ -23,9 +23,9 @@
               "raw": "{\n    \"email\": \"myadmin@nbfc.com\",\n    \"password\": \"admin123\"\n}"
             },
             "url": {
-              "raw": "http://20.51.216.139:8000/api/token/",
+              "raw": "http://57.152.34.24:8000/api/token/",
               "protocol": "http",
-              "host": ["20", "51", "216", "139"],
+              "host": ["57", "152", "34", "24"],
               "port": "8000",
               "path": ["api", "token", ""]
             }
