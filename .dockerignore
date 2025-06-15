@@ -60,6 +60,8 @@ docker-compose*.yml
 .dockerignore
 
 # Development
+.env
+.env.cloud
 .env.local
 .env.development
 .env.test

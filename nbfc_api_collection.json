@@ -23,9 +23,9 @@
               "raw": "{\n    \"email\": \"myadmin@nbfc.com\",\n    \"password\": \"admin123\"\n}"
             },
             "url": {
-              "raw": "http://127.0.0.1:8000/api/token/",
+              "raw": "http://20.51.216.139:8000/api/token/",
               "protocol": "http",
-              "host": ["127", "0", "0", "1"],
+              "host": ["20", "51", "216", "139"],
               "port": "8000",
               "path": ["api", "token", ""]
             }

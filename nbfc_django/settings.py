@@ -15,7 +15,11 @@ SECRET_KEY = os.getenv('SECRET_KEY', 'your-secret-key-here')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv('DEBUG', 'True') == 'True'
 
-ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', 'localhost,127.0.0.1').split(',')
+# Dynamic host configuration
+HOST_DOMAIN = os.getenv('HOST_DOMAIN', '20.51.216.139')
+HOST_IP = os.getenv('HOST_IP', '20.51.216.139')
+DEFAULT_HOSTS = f'{HOST_DOMAIN},{HOST_IP},0.0.0.0'
+ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', DEFAULT_HOSTS).split(',')
 
 # Application definition
 INSTALLED_APPS = [
@@ -83,8 +87,12 @@ WSGI_APPLICATION = 'nbfc_django.wsgi.application'
 # Database
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': os.getenv('DB_ENGINE', 'django.db.backends.sqlite3'),
+        'NAME': os.getenv('DB_NAME', BASE_DIR / 'db.sqlite3'),
+        'USER': os.getenv('DB_USER', ''),
+        'PASSWORD': os.getenv('DB_PASSWORD', ''),
+        'HOST': os.getenv('DB_HOST', ''),
+        'PORT': os.getenv('DB_PORT', ''),
     }
 }
 
@@ -163,8 +171,11 @@ SIMPLE_JWT = {
 
 # CORS settings
 CORS_ALLOW_ALL_ORIGINS = DEBUG
+FRONTEND_HOST = os.getenv('FRONTEND_HOST', 'localhost:3000')
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",
-    "http://127.0.0.1:3000",
+    f"http://{FRONTEND_HOST}",
+    f"https://{FRONTEND_HOST}",
+    f"http://{HOST_DOMAIN}:3000",
+    f"http://{HOST_IP}:3000",
 ]
-CORS_ALLOW_CREDENTIALS = True 
+CORS_ALLOW_CREDENTIALS = True
