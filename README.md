@@ -96,19 +96,33 @@ source venv/bin/activate  # On Windows: venv\Scripts\activate
 pip install -r requirements.txt
 ```
 
-4. Run migrations:
+**Note**: If you plan to use PostgreSQL, install the PostgreSQL adapter:
+```bash
+pip install psycopg2-binary
+```
+
+For development, SQLite is used by default and requires no additional setup.
+
+4. Configure environment variables:
+
+```bash
+cp .env.example .env
+# Edit .env with your configuration
+```
+
+5. Run migrations:
 
 ```bash
 python manage.py migrate
 ```
 
-5. Create superuser:
+6. Create superuser:
 
 ```bash
 python manage.py createsuperuser
 ```
 
-6. Run development server:
+7. Run development server:
 
 ```bash
 python manage.py runserver
