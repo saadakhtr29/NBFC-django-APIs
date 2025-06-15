@@ -120,7 +120,18 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 STATIC_URL = os.getenv('STATIC_URL', '/static/')
-STATIC_ROOT = os.path.join(BASE_DIR, os.getenv('STATIC_ROOT', 'static'))
+STATIC_ROOT = os.path.join(BASE_DIR, os.getenv('STATIC_ROOT', 'staticfiles'))
+
+# Additional static files directories (for development)
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+] if os.path.exists(os.path.join(BASE_DIR, 'static')) else []
+
+# Static files finders
+STATICFILES_FINDERS = [
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+]
 
 # Media files
 MEDIA_URL = os.getenv('MEDIA_URL', '/media/')
@@ -179,3 +190,22 @@ CORS_ALLOWED_ORIGINS = [
     f"http://{HOST_IP}:3000",
 ]
 CORS_ALLOW_CREDENTIALS = True
+
+# Security Headers Configuration
+SECURE_CROSS_ORIGIN_OPENER_POLICY = None  # Disable COOP for IP-based access
+SECURE_REFERRER_POLICY = "strict-origin-when-cross-origin"
+
+# Since you're using IP address, we need to be less strict
+SECURE_SSL_REDIRECT = False
+SECURE_HSTS_SECONDS = 0  # Disable HSTS for IP access
+SECURE_HSTS_INCLUDE_SUBDOMAINS = False
+SECURE_HSTS_PRELOAD = False
+
+# Content Security Policy (optional but recommended)
+CSP_DEFAULT_SRC = ("'self'",)
+CSP_STYLE_SRC = ("'self'", "'unsafe-inline'")
+CSP_SCRIPT_SRC = ("'self'", "'unsafe-inline'")
+CSP_IMG_SRC = ("'self'", "data:")
+
+# X-Frame options
+X_FRAME_OPTIONS = 'SAMEORIGIN'
