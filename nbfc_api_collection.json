@@ -1,7 +1,7 @@
 {
   "info": {
     "name": "NBFC API Collection",
-    "description": "Complete collection of all NBFC API endpoints - Updated for IP 57.152.34.24",
+    "description": "Complete collection of all NBFC API endpoints - Updated for IP 40.90.224.166",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
   "item": [
@@ -23,9 +23,9 @@
               "raw": "{\n    \"email\": \"myadmin@nbfc.com\",\n    \"password\": \"admin123\"\n}"
             },
             "url": {
-              "raw": "http://57.152.34.24:8000/api/token/",
+              "raw": "http://40.90.224.166:8000/api/token/",
               "protocol": "http",
-              "host": ["57", "152", "34", "24"],
+              "host": ["40", "90", "224", "166"],
               "port": "8000",
               "path": ["api", "token", ""]
             }
@@ -46,9 +46,9 @@
               "raw": "{\n    \"refresh\": \"{{refresh_token}}\"\n}"
             },
             "url": {
-              "raw": "http://127.0.0.1:8000/api/token/refresh/",
+              "raw": "http://40.90.224.166:8000/api/token/refresh/",
               "protocol": "http",
-              "host": ["127", "0", "0", "1"],
+              "host": ["40", "90", "224", "166"],
               "port": "8000",
               "path": ["api", "token", "refresh", ""]
             }
@@ -70,9 +70,9 @@
               }
             ],
             "url": {
-              "raw": "http://127.0.0.1:8000/api/accounts/users/",
+              "raw": "http://40.90.224.166:8000/api/accounts/users/",
               "protocol": "http",
-              "host": ["127", "0", "0", "1"],
+              "host": ["40", "90", "224", "166"],
               "port": "8000",
               "path": ["api", "accounts", "users", ""]
             }
@@ -97,9 +97,9 @@
               "raw": "{\n    \"email\": \"testuser@example.com\",\n    \"password\": \"testpass123\",\n    \"password2\": \"testpass123\",\n    \"user_type\": \"employee\",\n    \"first_name\": \"Test\",\n    \"last_name\": \"User\",\n    \"phone\": \"+1234567890\"\n}"
             },
             "url": {
-              "raw": "http://127.0.0.1:8000/api/accounts/users/",
+              "raw": "http://40.90.224.166:8000/api/accounts/users/",
               "protocol": "http",
-              "host": ["127", "0", "0", "1"],
+              "host": ["40", "90", "224", "166"],
               "port": "8000",
               "path": ["api", "accounts", "users", ""]
             }
@@ -116,9 +116,9 @@
               }
             ],
             "url": {
-              "raw": "http://127.0.0.1:8000/api/accounts/users/me/",
+              "raw": "http://40.90.224.166:8000/api/accounts/users/me/",
               "protocol": "http",
-              "host": ["127", "0", "0", "1"],
+              "host": ["40", "90", "224", "166"],
               "port": "8000",
               "path": ["api", "accounts", "users", "me", ""]
             }
@@ -143,9 +143,9 @@
               "raw": "{\n    \"old_password\": \"current_password\",\n    \"new_password\": \"new_password\",\n    \"new_password2\": \"new_password\"\n}"
             },
             "url": {
-              "raw": "http://127.0.0.1:8000/api/accounts/users/change_password/",
+              "raw": "http://40.90.224.166:8000/api/accounts/users/change_password/",
               "protocol": "http",
-              "host": ["127", "0", "0", "1"],
+              "host": ["40", "90", "224", "166"],
               "port": "8000",
               "path": ["api", "accounts", "users", "change_password", ""]
             }
@@ -167,9 +167,9 @@
               }
             ],
             "url": {
-              "raw": "http://127.0.0.1:8000/api/organizations/",
+              "raw": "http://40.90.224.166:8000/api/organizations/",
               "protocol": "http",
-              "host": ["127", "0", "0", "1"],
+              "host": ["40", "90", "224", "166"],
               "port": "8000",
               "path": ["api", "organizations", ""]
             }
@@ -194,9 +194,9 @@
               "raw": "{\n    \"name\": \"Test Organization\",\n    \"address\": \"123 Test Street\",\n    \"phone\": \"+1234567890\",\n    \"email\": \"org@example.com\"\n}"
             },
             "url": {
-              "raw": "http://127.0.0.1:8000/api/organizations/",
+              "raw": "http://40.90.224.166:8000/api/organizations/",
               "protocol": "http",
-              "host": ["127", "0", "0", "1"],
+              "host": ["40", "90", "224", "166"],
               "port": "8000",
               "path": ["api", "organizations", ""]
             }
@@ -218,9 +218,9 @@
               }
             ],
             "url": {
-              "raw": "http://127.0.0.1:8000/api/employees/",
+              "raw": "http://40.90.224.166:8000/api/employees/",
               "protocol": "http",
-              "host": ["127", "0", "0", "1"],
+              "host": ["40", "90", "224", "166"],
               "port": "8000",
               "path": ["api", "employees", ""]
             }
@@ -245,9 +245,9 @@
               "raw": "{\n    \"user\": 1,\n    \"organization\": 1,\n    \"department\": 1,\n    \"position\": \"Software Engineer\",\n    \"salary\": 50000,\n    \"joining_date\": \"2024-01-01\"\n}"
             },
             "url": {
-              "raw": "http://127.0.0.1:8000/api/employees/",
+              "raw": "http://40.90.224.166:8000/api/employees/",
               "protocol": "http",
-              "host": ["127", "0", "0", "1"],
+              "host": ["40", "90", "224", "166"],
               "port": "8000",
               "path": ["api", "employees", ""]
             }
@@ -269,9 +269,9 @@
               }
             ],
             "url": {
-              "raw": "http://127.0.0.1:8000/api/loans/",
+              "raw": "http://40.90.224.166:8000/api/loans/",
               "protocol": "http",
-              "host": ["127", "0", "0", "1"],
+              "host": ["40", "90", "224", "166"],
               "port": "8000",
               "path": ["api", "loans", ""]
             }
@@ -296,9 +296,9 @@
               "raw": "{\n    \"employee\": 1,\n    \"amount\": 10000,\n    \"interest_rate\": 5.0,\n    \"term_months\": 12,\n    \"start_date\": \"2024-01-01\",\n    \"purpose\": \"Home Renovation\"\n}"
             },
             "url": {
-              "raw": "http://127.0.0.1:8000/api/loans/",
+              "raw": "http://40.90.224.166:8000/api/loans/",
               "protocol": "http",
-              "host": ["127", "0", "0", "1"],
+              "host": ["40", "90", "224", "166"],
               "port": "8000",
               "path": ["api", "loans", ""]
             }
@@ -320,9 +320,9 @@
               }
             ],
             "url": {
-              "raw": "http://127.0.0.1:8000/api/repayments/",
+              "raw": "http://40.90.224.166:8000/api/repayments/",
               "protocol": "http",
-              "host": ["127", "0", "0", "1"],
+              "host": ["40", "90", "224", "166"],
               "port": "8000",
               "path": ["api", "repayments", ""]
             }
@@ -347,9 +347,9 @@
               "raw": "{\n    \"loan\": 1,\n    \"amount\": 1000,\n    \"payment_date\": \"2024-01-01\",\n    \"payment_method\": \"bank_transfer\"\n}"
             },
             "url": {
-              "raw": "http://127.0.0.1:8000/api/repayments/",
+              "raw": "http://40.90.224.166:8000/api/repayments/",
               "protocol": "http",
-              "host": ["127", "0", "0", "1"],
+              "host": ["40", "90", "224", "166"],
               "port": "8000",
               "path": ["api", "repayments", ""]
             }
@@ -371,9 +371,9 @@
               }
             ],
             "url": {
-              "raw": "http://127.0.0.1:8000/api/attendance/",
+              "raw": "http://40.90.224.166:8000/api/attendance/",
               "protocol": "http",
-              "host": ["127", "0", "0", "1"],
+              "host": ["40", "90", "224", "166"],
               "port": "8000",
               "path": ["api", "attendance", ""]
             }
@@ -398,9 +398,9 @@
               "raw": "{\n    \"employee\": 1,\n    \"date\": \"2024-01-01\",\n    \"check_in\": \"09:00:00\",\n    \"check_out\": \"17:00:00\",\n    \"status\": \"present\"\n}"
             },
             "url": {
-              "raw": "http://127.0.0.1:8000/api/attendance/",
+              "raw": "http://40.90.224.166:8000/api/attendance/",
               "protocol": "http",
-              "host": ["127", "0", "0", "1"],
+              "host": ["40", "90", "224", "166"],
               "port": "8000",
               "path": ["api", "attendance", ""]
             }
@@ -422,9 +422,9 @@
               }
             ],
             "url": {
-              "raw": "http://127.0.0.1:8000/api/salaries/",
+              "raw": "http://40.90.224.166:8000/api/salaries/",
               "protocol": "http",
-              "host": ["127", "0", "0", "1"],
+              "host": ["40", "90", "224", "166"],
               "port": "8000",
               "path": ["api", "salaries", ""]
             }
@@ -449,9 +449,9 @@
               "raw": "{\n    \"employee\": 1,\n    \"month\": \"2024-01\",\n    \"basic_salary\": 50000,\n    \"allowances\": 5000,\n    \"deductions\": 2000,\n    \"net_salary\": 53000\n}"
             },
             "url": {
-              "raw": "http://127.0.0.1:8000/api/salaries/",
+              "raw": "http://40.90.224.166:8000/api/salaries/",
               "protocol": "http",
-              "host": ["127", "0", "0", "1"],
+              "host": ["40", "90", "224", "166"],
               "port": "8000",
               "path": ["api", "salaries", ""]
             }
@@ -473,9 +473,9 @@
               }
             ],
             "url": {
-              "raw": "http://127.0.0.1:8000/api/documents/",
+              "raw": "http://40.90.224.166:8000/api/documents/",
               "protocol": "http",
-              "host": ["127", "0", "0", "1"],
+              "host": ["40", "90", "224", "166"],
               "port": "8000",
               "path": ["api", "documents", ""]
             }
@@ -512,9 +512,9 @@
               ]
             },
             "url": {
-              "raw": "http://127.0.0.1:8000/api/documents/",
+              "raw": "http://40.90.224.166:8000/api/documents/",
               "protocol": "http",
-              "host": ["127", "0", "0", "1"],
+              "host": ["40", "90", "224", "166"],
               "port": "8000",
               "path": ["api", "documents", ""]
             }
@@ -536,9 +536,9 @@
               }
             ],
             "url": {
-              "raw": "http://127.0.0.1:8000/api/settings/",
+              "raw": "http://40.90.224.166:8000/api/settings/",
               "protocol": "http",
-              "host": ["127", "0", "0", "1"],
+              "host": ["40", "90", "224", "166"],
               "port": "8000",
               "path": ["api", "settings", ""]
             }
@@ -563,9 +563,9 @@
               "raw": "{\n    \"key\": \"max_loan_amount\",\n    \"value\": \"100000\",\n    \"description\": \"Maximum loan amount allowed\"\n}"
             },
             "url": {
-              "raw": "http://127.0.0.1:8000/api/settings/",
+              "raw": "http://40.90.224.166:8000/api/settings/",
               "protocol": "http",
-              "host": ["127", "0", "0", "1"],
+              "host": ["40", "90", "224", "166"],
               "port": "8000",
               "path": ["api", "settings", ""]
             }
@@ -597,9 +597,9 @@
               ]
             },
             "url": {
-              "raw": "http://127.0.0.1:8000/api/bulk-upload/employees/",
+              "raw": "http://40.90.224.166:8000/api/bulk-upload/employees/",
               "protocol": "http",
-              "host": ["127", "0", "0", "1"],
+              "host": ["40", "90", "224", "166"],
               "port": "8000",
               "path": ["api", "bulk-upload", "employees", ""]
             }
@@ -621,9 +621,9 @@
               }
             ],
             "url": {
-              "raw": "http://127.0.0.1:8000/api/dashboard/summary/",
+              "raw": "http://40.90.224.166:8000/api/dashboard/summary/",
               "protocol": "http",
-              "host": ["127", "0", "0", "1"],
+              "host": ["40", "90", "224", "166"],
               "port": "8000",
               "path": ["api", "dashboard", "summary", ""]
             }
@@ -640,9 +640,9 @@
               }
             ],
             "url": {
-              "raw": "http://127.0.0.1:8000/api/dashboard/statistics/",
+              "raw": "http://40.90.224.166:8000/api/dashboard/statistics/",
               "protocol": "http",
-              "host": ["127", "0", "0", "1"],
+              "host": ["40", "90", "224", "166"],
               "port": "8000",
               "path": ["api", "dashboard", "statistics", ""]
             }

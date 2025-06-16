@@ -39,7 +39,7 @@ services:
       - DB_HOST=db
       - DB_USER=${DB_USER:-nbfc_user}
       - DB_PASSWORD=${DB_PASSWORD:-nbfc_password}
-      - ALLOWED_HOSTS=${HOST_DOMAIN:-57.152.34.24},${HOST_IP:-57.152.34.24},0.0.0.0,web
+      - ALLOWED_HOSTS=${HOST_DOMAIN:-40.90.224.166},${HOST_IP:-40.90.224.166},0.0.0.0,web
     volumes:
       - static_volume:/app/staticfiles
       - media_volume:/app/media

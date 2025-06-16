@@ -16,8 +16,8 @@ SECRET_KEY = os.getenv('SECRET_KEY', 'your-secret-key-here')
 DEBUG = os.getenv('DEBUG', 'True') == 'True'
 
 # Dynamic host configuration
-HOST_DOMAIN = os.getenv('HOST_DOMAIN', '57.152.34.24')
-HOST_IP = os.getenv('HOST_IP', '57.152.34.24')
+HOST_DOMAIN = os.getenv('HOST_DOMAIN', '40.90.224.166')
+HOST_IP = os.getenv('HOST_IP', '40.90.224.166')
 DEFAULT_HOSTS = f'{HOST_DOMAIN},{HOST_IP},0.0.0.0'
 ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', DEFAULT_HOSTS).split(',')
 
