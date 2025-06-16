@@ -15,7 +15,11 @@ SECRET_KEY = os.getenv('SECRET_KEY', 'your-secret-key-here')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv('DEBUG', 'True') == 'True'
 
-ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', 'localhost,127.0.0.1').split(',')
+# Dynamic host configuration
+HOST_DOMAIN = os.getenv('HOST_DOMAIN', '40.90.224.166')
+HOST_IP = os.getenv('HOST_IP', '40.90.224.166')
+DEFAULT_HOSTS = f'{HOST_DOMAIN},{HOST_IP},0.0.0.0'
+ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', DEFAULT_HOSTS).split(',')
 
 # Application definition
 INSTALLED_APPS = [
@@ -83,8 +87,12 @@ WSGI_APPLICATION = 'nbfc_django.wsgi.application'
 # Database
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': os.getenv('DB_ENGINE', 'django.db.backends.sqlite3'),
+        'NAME': os.getenv('DB_NAME', BASE_DIR / 'db.sqlite3'),
+        'USER': os.getenv('DB_USER', ''),
+        'PASSWORD': os.getenv('DB_PASSWORD', ''),
+        'HOST': os.getenv('DB_HOST', ''),
+        'PORT': os.getenv('DB_PORT', ''),
     }
 }
 
@@ -112,7 +120,18 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 STATIC_URL = os.getenv('STATIC_URL', '/static/')
-STATIC_ROOT = os.path.join(BASE_DIR, os.getenv('STATIC_ROOT', 'static'))
+STATIC_ROOT = os.path.join(BASE_DIR, os.getenv('STATIC_ROOT', 'staticfiles'))
+
+# Additional static files directories (for development)
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+] if os.path.exists(os.path.join(BASE_DIR, 'static')) else []
+
+# Static files finders
+STATICFILES_FINDERS = [
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+]
 
 # Media files
 MEDIA_URL = os.getenv('MEDIA_URL', '/media/')
@@ -163,8 +182,30 @@ SIMPLE_JWT = {
 
 # CORS settings
 CORS_ALLOW_ALL_ORIGINS = DEBUG
+FRONTEND_HOST = os.getenv('FRONTEND_HOST', '57.152.34.24:3000')
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",
-    "http://127.0.0.1:3000",
+    f"http://{FRONTEND_HOST}",
+    f"https://{FRONTEND_HOST}",
+    f"http://{HOST_DOMAIN}:3000",
+    f"http://{HOST_IP}:3000",
 ]
-CORS_ALLOW_CREDENTIALS = True 
+CORS_ALLOW_CREDENTIALS = True
+
+# Security Headers Configuration
+SECURE_CROSS_ORIGIN_OPENER_POLICY = None  # Disable COOP for IP-based access
+SECURE_REFERRER_POLICY = "strict-origin-when-cross-origin"
+
+# Since you're using IP address, we need to be less strict
+SECURE_SSL_REDIRECT = False
+SECURE_HSTS_SECONDS = 0  # Disable HSTS for IP access
+SECURE_HSTS_INCLUDE_SUBDOMAINS = False
+SECURE_HSTS_PRELOAD = False
+
+# Content Security Policy (optional but recommended)
+CSP_DEFAULT_SRC = ("'self'",)
+CSP_STYLE_SRC = ("'self'", "'unsafe-inline'")
+CSP_SCRIPT_SRC = ("'self'", "'unsafe-inline'")
+CSP_IMG_SRC = ("'self'", "data:")
+
+# X-Frame options
+X_FRAME_OPTIONS = 'SAMEORIGIN'
