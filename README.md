@@ -2,9 +2,40 @@
 
 A comprehensive Django-based Non-Banking Financial Company (NBFC) management system that handles employee management, loan processing, attendance tracking, salary management, and more.
 
-## 🚀 Quick IP Configuration
+## 🚀 Quick Deployment Script
 
-**For new VM deployments, you only need to update ONE value:**
+**The fastest way to deploy on a new VM:**
+
+Use the automated deployment script that handles everything for you:
+
+```bash
+./deploy.sh <NEW_IP_ADDRESS>
+```
+
+**Example:**
+```bash
+./deploy.sh 40.90.224.166
+```
+
+### What the deployment script does:
+- ✅ Backs up existing configuration
+- ✅ Creates new `.env` from template
+- ✅ Updates HOST_IP automatically
+- ✅ Stops old containers
+- ✅ Builds and starts new containers
+- ✅ Waits for services to initialize
+- ✅ Provides access URLs and next steps
+
+### Script Features:
+- **Automatic Backup**: Creates timestamped backup of existing `.env`
+- **Zero Configuration**: Just provide the IP address
+- **Health Checks**: Verifies deployment success
+- **User Guidance**: Shows next steps and access URLs
+- **Error Handling**: Graceful failure with helpful logs
+
+## 🎯 Manual IP Configuration
+
+**For manual deployments, you only need to update ONE value:**
 
 1. Copy `.env.example` to `.env`
 2. Update the `HOST_IP` value in `.env`:
@@ -84,7 +115,37 @@ nbfc-django/
 
 ## Setup and Installation
 
-### 🎯 For New VM Deployment
+### 🚀 Automated Deployment (Recommended)
+
+**For new VM deployment using the deployment script:**
+
+1. **Clone the repository**:
+```bash
+git clone <repository-url>
+cd nbfc-django
+```
+
+2. **Make script executable**:
+```bash
+chmod +x deploy.sh
+```
+
+3. **Deploy with one command**:
+```bash
+./deploy.sh YOUR_VM_IP_ADDRESS
+```
+
+4. **Create superuser** (after deployment):
+```bash
+docker compose exec web python manage.py createsuperuser
+```
+
+5. **Test the deployment**:
+```bash
+curl http://YOUR_VM_IP:8000/api/
+```
+
+### 🎯 Manual VM Deployment
 
 1. **Clone and configure**:
 ```bash
@@ -167,6 +228,39 @@ python manage.py runserver
 - **Flexible nginx**: Works with any IP or domain
 - **Docker Integration**: Compose file uses environment variables
 - **API Compatibility**: All endpoints work with any host configuration
+- **Deployment Script**: One-command deployment with automatic configuration
+
+## Deployment Commands Reference
+
+### Using Deployment Script
+```bash
+# Deploy to new IP
+./deploy.sh 40.90.224.166
+
+# Check deployment status
+docker compose ps
+
+# View logs
+docker compose logs
+
+# Create superuser
+docker compose exec web python manage.py createsuperuser
+```
+
+### Manual Docker Commands
+```bash
+# Stop services
+docker compose down
+
+# Build and start
+docker compose up -d --build
+
+# View logs
+docker compose logs -f
+
+# Access container shell
+docker compose exec web bash
+```
 
 ## API Documentation
 
