@@ -15,11 +15,26 @@ SECRET_KEY = os.getenv('SECRET_KEY', 'your-secret-key-here')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv('DEBUG', 'True') == 'True'
 
-# Dynamic host configuration
-HOST_DOMAIN = os.getenv('HOST_DOMAIN', '40.90.224.166')
-HOST_IP = os.getenv('HOST_IP', '40.90.224.166')
-DEFAULT_HOSTS = f'{HOST_DOMAIN},{HOST_IP},0.0.0.0'
-ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', DEFAULT_HOSTS).split(',')
+# Dynamic host configuration - Single point of truth
+HOST_IP = os.getenv('HOST_IP', '127.0.0.1')
+HOST_DOMAIN = os.getenv('HOST_DOMAIN', HOST_IP)
+
+# Auto-generate allowed hosts from HOST_IP
+DYNAMIC_HOSTS = [
+    HOST_IP,
+    HOST_DOMAIN,
+    '0.0.0.0',
+    'localhost',
+    '127.0.0.1',
+    'web',  # Docker service name
+]
+
+# Allow custom ALLOWED_HOSTS override or use dynamic
+CUSTOM_ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '')
+if CUSTOM_ALLOWED_HOSTS:
+    ALLOWED_HOSTS = CUSTOM_ALLOWED_HOSTS.split(',')
+else:
+    ALLOWED_HOSTS = DYNAMIC_HOSTS
 
 # Application definition
 INSTALLED_APPS = [
@@ -180,16 +195,30 @@ SIMPLE_JWT = {
     'TOKEN_TYPE_CLAIM': 'token_type',
 }
 
-# CORS settings
+# CORS settings - Auto-generate from HOST_IP
 CORS_ALLOW_ALL_ORIGINS = DEBUG
-FRONTEND_HOST = os.getenv('FRONTEND_HOST', '57.152.34.24:3000')
-CORS_ALLOWED_ORIGINS = [
-    f"http://{FRONTEND_HOST}",
-    f"https://{FRONTEND_HOST}",
-    f"http://{HOST_DOMAIN}:3000",
-    f"http://{HOST_IP}:3000",
+
+# Auto-generate CORS origins
+FRONTEND_PORT = '3000'
+API_PORT = '8000'
+ADMIN_PORT = '80'
+
+DYNAMIC_CORS_ORIGINS = [
+    f"http://{HOST_IP}:{FRONTEND_PORT}",
+    f"https://{HOST_IP}:{FRONTEND_PORT}",
+    f"http://{HOST_IP}:{API_PORT}",
+    f"http://{HOST_IP}:{ADMIN_PORT}",
+    f"http://{HOST_IP}",
+    "http://localhost:3000",
+    "http://127.0.0.1:3000",
 ]
-CORS_ALLOW_CREDENTIALS = True
+
+# Allow custom CORS origins or use dynamic
+CUSTOM_CORS_ORIGINS = os.getenv('CORS_ALLOWED_ORIGINS', '')
+if CUSTOM_CORS_ORIGINS:
+    CORS_ALLOWED_ORIGINS = CUSTOM_CORS_ORIGINS.split(',')
+else:
+    CORS_ALLOWED_ORIGINS = DYNAMIC_CORS_ORIGINS
 
 # Security Headers Configuration
 SECURE_CROSS_ORIGIN_OPENER_POLICY = None  # Disable COOP for IP-based access
